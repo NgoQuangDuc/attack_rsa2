@@ -1,4 +1,6 @@
+
 #include<bits/stdc++.h>
+#include <cstring>
 using namespace std;
 
 typedef long long int ll;
@@ -7,7 +9,7 @@ ll p, q, n, t, flag, e[100], d[100], temp[100], j, m[100], en[100], i,eve[100];
 char msg[100];
 int fin_msg[100];
 ll r;
-
+ll len100;
 ll c1[100],c2[100],c3[100];
 ll m1,m2,m3;
 ll M,M1,M2,M3;
@@ -131,36 +133,28 @@ ll prime(ll pr)
 
 void encrypt(ll e_val)
 {
-    ll i = 0;
-    ll len = strlen(msg); //.length();
-    while (i <len)
-    {
-        c1[i] = power(msg[i],e_val,m1);
-        c2[i] = power(msg[i],e_val,m2);
-        c3[i] = power(msg[i],e_val,m3);
-        i++;
-    }
-    
-
+  
+    ll len; //.length();    
+cin>>len;
     cout << "\nTHE ENCRYPTED Cipher text IS\n";
+len100=len;
     for (i = 0; i<len; i++)
     {
         char val= c1[i];
-        cout<<c1[i]<<" ";
+        cin>>c1[i];
     }
-    cout<<endl;
+		
     for (i = 0; i<len; i++)
     {
         char val= c2[i];
-        cout<<c2[i]<<" ";
+        cin>>c2[i];
     }
-    cout<<endl;
     for (i = 0; i<len; i++)
     {
-        char val= c3[i];
-        cout<<c3[i]<<" ";
-    }
-    cout<<endl;
+      char val= c3[i];
+        cin>>c3[i];
+    }  
+
 }
 
 
@@ -230,8 +224,8 @@ void decrypt_new()
 
     ll num[] = {m1, m2, m3};
     ll k = sizeof(num)/sizeof(num[0]);
-    ll len =strlen(msg);
-    for(ll i=0;i<len;i++)
+    ll len =len100;
+    for(ll i=0;i<len100;i++)
     {
         ll rem[] = {c1[i],c2[i],c3[i]}; 
          
@@ -241,7 +235,7 @@ void decrypt_new()
         fin_msg[i]= int(0.5 + tt);
         //cout<<tt<<" "<<char(tt)<<" "<<int(tt)<<endl;
     }
-    for(ll i=0;i<len;i++) cout<<char(fin_msg[i]);
+    for(ll i=0;i<len100;i++) cout<<char(fin_msg[i]);
     cout<<endl;
 }
 
@@ -290,18 +284,18 @@ int main()
     ll p1,q1,p2,q2,p3,q3;
     
     cout<<"Enter p.qs for each of N1,N2,N3 values"<<endl;
-    cin>>p1>>q1>>p2>>q2>>p3>>q3;
-    //cin>>m1>>m2>>m3;
-    m1= p1*q1;m2=p2*q2;m3=p3*q3;
+ //   cin>>p1>>q1>>p2>>q2>>p3>>q3;
+    cin>>m1>>m2>>m3;
+   // m1= p1*q1;m2=p2*q2;m3=p3*q3;
 
     if(check_gcd(m1,m2,m3)==0) {cout<<"Invalid N1,N2,N3 since they are coprime with each other"<<endl; exit(1);}
 
 
-    cout << "\nENTER MESSAGE\n";
-    fflush(stdin);
+   // cout << "\nENTER MESSAGE\n";
+   // fflush(stdin);
 
-    scanf(" %[^\n]s",msg);
-
+   // scanf(" %[^\n]s",msg);
+//	strcpy(msg, "Hello");
 
 
     /*M = m1*m2*m3;
@@ -366,7 +360,3 @@ int main()
 
     
 }
-
-
-
-
